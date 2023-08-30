@@ -1,0 +1,40 @@
+name: app_jadwal
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  google_fonts: 5.1.0
+  numberpicker: 2.1.2
+  hexcolor: 3.0.1
+  shared_preferences: 2.2.0
+  firebase_auth: 4.8.0
+  firebase_core: 2.15.1
+  cloud_firestore: 4.9.0
+  firebase_messaging: 14.6.7
+  flutter_switch: 0.3.2
+  basic_utils: 5.6.1
+  intl: 0.18.1
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  assets: 
+    - assets/icon/icon_x.png
+    - assets/logo/schediva_logo.png
+    - assets/logo/schediva_logo_v2.png
+    - assets/erick_delenia.jpg
+    - assets/icon/icon_wisuda.png
+    - assets/account_image.png
+    - assets/list_data/list_jadwal.dart
+  uses-material-design: true
+

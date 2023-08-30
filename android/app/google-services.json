@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "111412367405",
+    "project_id": "schediva-8e457",
+    "storage_bucket": "schediva-8e457.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111412367405:android:2d62911b4da80929dda8a4",
+        "android_client_info": {
+          "package_name": "com.schediva.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111412367405-tm1f1qql8gllhdip5ht6dt1tneqs6s9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.schediva.app",
+            "certificate_hash": "18176a93cd4c99301ef5501f5464abb6f3f7f22d"
+          }
+        },
+        {
+          "client_id": "111412367405-0ekhb7t7mcnv9ek00bou4f5ku9psg6og.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjFjgTHhCdJtgGeo22C7cqiU_MQcwBr_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111412367405-0ekhb7t7mcnv9ek00bou4f5ku9psg6og.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
