@@ -90,16 +90,11 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                       child: InkWell(
                         onTap: () async {
                           TimeOfDay? pickedTime = await showTimePicker(
-                            initialTime: controller.time1,
+                            initialTime: TimeOfDay.fromDateTime(controller.dateTime),
                             context: context,
                           );
 
                           if (pickedTime != null) {
-                            // debugPrint(pickedTime.format(context).toString());
-
-                            // DateTime date2 = DateFormat("hh:mma").parse(
-                            //     "6:45PM");
-                            // debugPrint(pickedTime.hour.toString());
                             controller.setTime(pickedTime);
                           }
                         },
@@ -111,7 +106,7 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                                 init: controller,
                                 builder: (ctx) {
                                   return Text(
-                                    controller.time1.format(context).toString(),
+                                    TimeOfDay.fromDateTime(controller.dateTime2).format(context),
                                     style: GoogleFonts.roboto(
                                       textStyle: TextStyle(
                                         color: HexColor('#F0E8F3'),
@@ -142,16 +137,11 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                       child: InkWell(
                         onTap: () async {
                           TimeOfDay? pickedTime = await showTimePicker(
-                            initialTime: controller.time2,
+                            initialTime: TimeOfDay.fromDateTime(controller.dateTime2),
                             context: context,
                           );
 
                           if (pickedTime != null) {
-                            // debugPrint(pickedTime.format(context).toString());
-
-                            // DateTime date2 = DateFormat("hh:mma").parse(
-                            //     "6:45PM");
-                            // debugPrint(pickedTime.hour.toString());
                             controller.setTime2(pickedTime);
                           }
                         },
@@ -163,7 +153,7 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                                 init: controller,
                                 builder: (ctx) {
                                   return Text(
-                                    controller.time2.format(context).toString(),
+                                    TimeOfDay.fromDateTime(controller.dateTime2).format(context),
                                     style: GoogleFonts.roboto(
                                       textStyle: TextStyle(
                                         color: HexColor('#F0E8F3'),

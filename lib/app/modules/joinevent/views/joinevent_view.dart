@@ -22,7 +22,7 @@ class JoineventView extends GetView<JoineventController> {
           title: Align(
             alignment: Alignment.topLeft,
             child: Text(
-              'Kegiatan',
+              'Grup',
               style: GoogleFonts.roboto(
                 textStyle: const TextStyle(
                     fontSize: 25.76, fontWeight: FontWeight.bold),
@@ -203,7 +203,6 @@ class JoineventView extends GetView<JoineventController> {
                                   if (data['id_owner'] == authC.idUser ||
                                       (data['id_member'] as List<dynamic>)
                                           .contains(authC.idUser)) {
-                                    // Get.toNamed(Routes.GROUP, arguments: [data['nama'] ,data['id_group']]);
                                     Get.delete<GroupController>(force: true);
                                     Get.put(GroupController(
                                         idGroup: data['id_group'],

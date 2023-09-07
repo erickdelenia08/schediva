@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:intl/intl.dart';
 
 class AgendaView extends StatelessWidget {
   const AgendaView({super.key});
@@ -91,7 +92,7 @@ class AgendaView extends StatelessWidget {
                                                   width: 5,
                                                 ),
                                                 Text(
-                                                  '${data['tanggal']}',
+                                                  DateFormat.yMMMd().format((data['start'] as Timestamp).toDate()),
                                                   style: GoogleFonts.roboto(
                                                       textStyle: TextStyle(
                                                           color:
@@ -119,12 +120,12 @@ class AgendaView extends StatelessWidget {
                                                   width: 5,
                                                 ),
                                                 Text(
-                                                  '${data['jam']}',
+                                                  '${DateFormat('HH:mm').format((data['start'] as Timestamp).toDate())}-${DateFormat('HH:mm').format((data['end'] as Timestamp).toDate())}',
                                                   style: GoogleFonts.roboto(
                                                       textStyle: TextStyle(
                                                           color:
                                                               HexColor('#F0E8F3'),
-                                                          fontSize: 15)),
+                                                          fontSize: 15)), 
                                                 ),
                                               ],
                                             ),
