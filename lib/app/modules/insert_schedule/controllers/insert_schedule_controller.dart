@@ -7,34 +7,75 @@ import '../../../data/list_jadwal.dart';
 
 class InsertScheduleController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  var jadwal;
+  Map<String, dynamic>? jadwal;
   late CollectionReference collection;
 
   int idxTabController = 0;
 
-  void tambahJadwal(
-      {required int tag, required int idDay, required Waktu waktu}) async {
-    // jadwal[idDay].add(waktu);
-
-    if (jadwal != null) {
-      collection
-          .doc(Get.find<AuthController>().idUser)
-          .update({getDayName(idDay): jadwal[idDay]});
+  Future<void> fetchJadwal() async {
+    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+        .instance
+        .collection('jadwal')
+        .doc(Get.find<AuthController>().idUser)
+        .get();
+    if (data.exists) {
+      jadwal = data.data();
     } else {
-      debugPrint('NUlllllll dan akand ibuat dokumennya');
-      collection.doc(Get.find<AuthController>().idUser).set(
+      await collection.doc(Get.find<AuthController>().idUser).set(
         {
           'id': Get.find<AuthController>().idUser,
+          getDayName(0): [],
+          getDayName(1): [],
+          getDayName(2): [],
+          getDayName(3): [],
+          getDayName(4): [],
+          getDayName(5): [],
+          getDayName(6): [],
+        },
+      ).then((_) => fetchJadwal());
+    }
+  }
+
+  void tambahJadwal(
+      {required int tag, required int idDay, required Waktu waktu}) async {
+    if ((jadwal![getDayName(idDay)] as List<dynamic>).isNotEmpty) {
+      List<dynamic> jadwalLama = jadwal![getDayName(idDay)] as List<dynamic>;
+      jadwalLama.add(
+        {
+          'title': waktu.title,
+          'deskripsi': waktu.deskripsi,
+          'jadwal': [waktu.batasBawah, waktu.batasAtas]
+        },
+      );
+      collection.doc(Get.find<AuthController>().idUser).update(
+        {
+          getDayName(idDay): jadwalLama,
+        },
+      ).then((_) {
+        jadwal![getDayName(idDay)] = jadwalLama;
+      });
+    } else {
+      collection.doc(Get.find<AuthController>().idUser).update(
+        {
           getDayName(idDay): [
             {
               'title': waktu.title,
               'deskripsi': waktu.deskripsi,
               'jadwal': [waktu.batasBawah, waktu.batasAtas]
             }
-          ]
+          ],
         },
-      );
+      ).then((_) {
+        jadwal![getDayName(idDay)] = [
+          {
+            'title': waktu.title,
+            'deskripsi': waktu.deskripsi,
+            'jadwal': [waktu.batasBawah, waktu.batasAtas]
+          }
+        ];
+      });
     }
+
     update([tag]);
   }
 
@@ -44,8 +85,23 @@ class InsertScheduleController extends GetxController
       required int idxItem,
       required int finalDay,
       required Waktu waktu}) {
-    jadwal[finalDay].add(waktu);
-    jadwal[initDay].removeAt(idxItem);
+    // .add(waktu);.
+    var jadwalFinal = jadwal![getDayName(finalDay)];
+    var jadwalAwal = jadwal![getDayName(initDay)];
+    jadwalFinal.add({
+      'title': waktu.title,
+      'deskripsi': waktu.deskripsi,
+      'jadwal': [waktu.batasBawah, waktu.batasAtas]
+    });
+    jadwalAwal.removeAt(idxItem);
+    collection.doc(Get.find<AuthController>().idUser).update({
+      getDayName(finalDay): jadwalFinal,
+      getDayName(initDay): jadwalAwal,
+    }).then((_) {
+      jadwal![getDayName(finalDay)] = jadwalFinal;
+      jadwal![getDayName(initDay)] = jadwalAwal;
+    });
+
     update([tag]);
   }
 
@@ -54,12 +110,27 @@ class InsertScheduleController extends GetxController
       required int idDay,
       required int idxItem,
       required Waktu waktu}) {
-    jadwal[idDay][idxItem] = waktu;
+    var jadwalLama = jadwal;
+    jadwalLama![getDayName(idDay)][idxItem] = {
+      'title': waktu.title,
+      'deskripsi': waktu.deskripsi,
+      'jadwal': [waktu.batasBawah, waktu.batasAtas]
+    };
+    collection
+        .doc(Get.find<AuthController>().idUser)
+        .update({getDayName(idDay): jadwalLama[getDayName(idDay)]});
+
     update([tag]);
   }
 
   void hapusJadwal({required int id, required int idxItem, required idDay}) {
-    jadwal[idDay].removeAt(idxItem);
+    var jadwalLama = jadwal![getDayName(idDay)];
+    jadwalLama.removeAt(idxItem);
+    collection
+        .doc(Get.find<AuthController>().idUser)
+        .update({getDayName(idDay): jadwalLama}).then((_) {
+      jadwal![getDayName(idDay)] = jadwalLama;
+    });
     update([id]);
   }
 

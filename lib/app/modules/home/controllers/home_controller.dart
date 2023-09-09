@@ -6,6 +6,7 @@ class HomeController extends GetxController {
   int idx_event = -1;
   List<dynamic>? idGroups;
   late Timestamp timestampFilter;
+  GlobalKey<RefreshIndicatorState> keyRefreshIdx = GlobalKey<RefreshIndicatorState>();
 
   @override
   void onInit() {
