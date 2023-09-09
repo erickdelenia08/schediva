@@ -90,7 +90,7 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                       child: InkWell(
                         onTap: () async {
                           TimeOfDay? pickedTime = await showTimePicker(
-                            initialTime: TimeOfDay.fromDateTime(controller.dateTime),
+                            initialTime: TimeOfDay.fromDateTime(controller.time),
                             context: context,
                           );
 
@@ -106,7 +106,7 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                                 init: controller,
                                 builder: (ctx) {
                                   return Text(
-                                    TimeOfDay.fromDateTime(controller.dateTime2).format(context),
+                                    TimeOfDay.fromDateTime(controller.time).format(context),
                                     style: GoogleFonts.roboto(
                                       textStyle: TextStyle(
                                         color: HexColor('#F0E8F3'),
@@ -137,7 +137,7 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                       child: InkWell(
                         onTap: () async {
                           TimeOfDay? pickedTime = await showTimePicker(
-                            initialTime: TimeOfDay.fromDateTime(controller.dateTime2),
+                            initialTime: TimeOfDay.fromDateTime(controller.time2),
                             context: context,
                           );
 
@@ -153,7 +153,7 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                                 init: controller,
                                 builder: (ctx) {
                                   return Text(
-                                    TimeOfDay.fromDateTime(controller.dateTime2).format(context),
+                                    TimeOfDay.fromDateTime(controller.time2).format(context),
                                     style: GoogleFonts.roboto(
                                       textStyle: TextStyle(
                                         color: HexColor('#F0E8F3'),
@@ -185,7 +185,7 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                   onTap: () {
                     showDatePicker(
                       context: context,
-                      initialDate: controller.dateTime,
+                      initialDate: controller.date,
                       firstDate: DateTime(2000),
                       lastDate: DateTime(2099),
                       selectableDayPredicate: (day) {
@@ -210,7 +210,7 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                           init: controller,
                           builder: (context) {
                             return Text(
-                               DateFormat.yMMMMd('en_US').format(controller.dateTime),
+                               DateFormat.yMMMMd('en_US').format(controller.time),
                               style: GoogleFonts.roboto(
                                 textStyle: TextStyle(
                                   color: HexColor('#F0E8F3'),
@@ -266,7 +266,7 @@ class CreateAgendaView extends GetView<CreateAgendaController> {
                               borderRadius: BorderRadius.circular(10),
                               side: BorderSide.none))),
                   onPressed: () {
-                    controller.setAgenda();
+                    controller.cekAgenda();
                   },
                   child: Align(
                     alignment: Alignment.center,

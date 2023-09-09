@@ -150,19 +150,19 @@ class InsertScheduleController extends GetxController
 
   String getDayName(int id) {
     if (id == 0) {
-      return 'senin';
+      return 'Mon';
     } else if (id == 1) {
-      return 'selasa';
+      return 'Tue';
     } else if (id == 2) {
-      return 'rabu';
+      return 'Wed';
     } else if (id == 3) {
-      return 'kamis';
+      return 'Thu';
     } else if (id == 4) {
-      return 'jumat';
+      return 'Fri';
     } else if (id == 5) {
-      return 'sabtu';
+      return 'Sat';
     } else {
-      return 'minggu';
+      return 'Sun';
     }
   }
 }
