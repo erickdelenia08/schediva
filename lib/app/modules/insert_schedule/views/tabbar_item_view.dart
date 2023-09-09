@@ -1,6 +1,4 @@
-import 'package:app_jadwal/app/controllers/auth_controller.dart';
 import 'package:app_jadwal/app/modules/insert_schedule/controllers/insert_schedule_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
